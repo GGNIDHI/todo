@@ -154,13 +154,13 @@ def delete_p():
 # 
 
 
-@application.route("/tasks.html")
+@app.route("/tasks.html")
 def tasks():
     mycursor.execute('select * from task;')
     data = mycursor.fetchall()
     return render_template("tasks.html" , output_data = data)
 
-@application.route("/tasks_p" , methods=["POST"])
+@app.route("/tasks_p" , methods=["POST"])
 def tasks_p():
     if request.method=="POST":
         l=request.form["id"]
@@ -176,13 +176,13 @@ def tasks_p():
 
 
 
-@application.route("/t_completed.html")
+@app.route("/t_completed.html")
 def t_completed():
     mycursor.execute("select * from task where status='1';")
     data = mycursor.fetchall()
     return render_template("t_completed.html" , output_data = data)
 
-@application.route("/t_completed_p" , methods=["POST"])
+@app.route("/t_completed_p" , methods=["POST"])
 def t_completed_p():
     if request.method=="POST":
         l=request.form["id"]
@@ -194,14 +194,14 @@ def t_completed_p():
     return render_template("t_completed.html" , output_data = data)
 
 
-@application.route("/t_upcoming.html")
+@app.route("/t_upcoming.html")
 def t_upcoming():
     mycursor.execute("select * from task where status='0';")
     data = mycursor.fetchall()
     return render_template("t_upcoming.html" , output_data = data)
 
 
-@application.route("/t_upcoming_p" , methods=["POST"])
+@app.route("/t_upcoming_p" , methods=["POST"])
 def t_upcoming_p():
     if request.method=="POST":
         l=request.form["id"]
@@ -213,12 +213,12 @@ def t_upcoming_p():
     return render_template("t_upcoming.html" , output_data = data)
 
 
-@application.route("/t_addtask.html")
+@app.route("/t_addtask.html")
 def t_addtask():
     
     return render_template("t_addtask.html")
 
-@application.route("/t_addtask_p", methods=["POST"])
+@app.route("/t_addtask_p", methods=["POST"])
 def t_addtask_p():
     hashtags = []
     if request.method=="POST":
@@ -239,13 +239,13 @@ def t_addtask_p():
 
 
 
-@application.route("/t_search.html")
+@app.route("/t_search.html")
 def t_search():
     mycursor.execute('select distinct hash_tag from hashtag;')
     data = mycursor.fetchall()
     return render_template("t_search.html", hash_data=data)
 
-@application.route("/t_search_p", methods=["POST"])
+@app.route("/t_search_p", methods=["POST"])
 def t_search_p():
     if request.method=="POST":
         l=request.form["search"]
@@ -256,13 +256,13 @@ def t_search_p():
     return render_template("t_search.html", output_data=data , hash_data=data2)
 
 
-@application.route("/t_update.html")
+@app.route("/t_update.html")
 def t_update():
     mycursor.execute('select * from task;')
     data = mycursor.fetchall()
     return render_template("t_update.html", output_data=data)
 
-@application.route("/t_update_task.html", methods=["POST"])
+@app.route("/t_update_task.html", methods=["POST"])
 def t_update_task():
     if request.method=="POST":
         l=request.form["id"]
@@ -271,7 +271,7 @@ def t_update_task():
         print(data[0][1])
     return render_template("t_update_task.html" , output_data=data)
 
-@application.route("/t_update_p", methods=["POST"])
+@app.route("/t_update_p", methods=["POST"])
 def t_update_p():
     if request.method=="POST":
         l=request.form["name"]
@@ -295,7 +295,7 @@ def t_update_p():
 
 
 if __name__=='__main__':
-    application.run(debug=True)
+    app.run(debug=True)
 
 
 
