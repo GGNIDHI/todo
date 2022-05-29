@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <style>
+            .row-style
+            {
+            padding-top:70px;
+            position:relative;
+            }
+        </style>
+
+</head>
+<body>
+  <div class="container">
+      <div class="row">
+      <div class="col">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar" >
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a href="http://localhost:5000/" class="navbar-brand">TODO - Tasks</a>
+              </div>
+              <div>
+                  <div class="collapse navbar-collapse" id="mynavbar">
+                      <ul class="nav navbar-nav navbar-right">
+                          <li><a href="t_addtask.html"><span class="glyphicon glyphicon-Menu"></span> Add New Task</a></li>
+                          <li><a href="t_update.html"><span class="glyphicon glyphicon-Menu"></span> Update Task</a></li>
+                          <li><a href="tasks.html"><span class="glyphicon glyphicon-shopping-Menu"></span>Display Tasks</a></li>
+                          <li><a href="t_search.html"><span class="glyphicon glyphicon-Menu"></span> Search Tasks</a></li>
+                          <li><a href="t_completed.html"><span class="glyphicon glyphicon-Menu"></span> Completed Tasks</a></li>
+                          <li><a href="t_upcoming.html"><span class="glyphicon glyphicon-Menu"></span> Upcoming Tasks</a></li>
+                      </ul>
+                  </div>
+              </div>           
+            </div>
+        
+      </nav>
+      </div>
+  </div>
+  </div>
+
+  <div class="container" style="padding-top:70px;font-size:1.15em">
+		
+		<div class="row">
+			
+			<div class="col-lg-1">
+        <h3><b>ID</b></h3>
+			</div>
+			<div class="col-lg-7">
+        <h3><b>Task</b></h3>
+			</div>
+			<div class="col-lg-2">
+        <h3><b>Update</b></h3>
+			</div>
+			<div class="col-lg-2">
+        <h3><b>Status</b></h3>
+			</div>
+		</div>
+	</div>
+  <hr/>
+
+  {% for row in output_data %}
+
+
+  
+    <div class="container" style="padding-top:10px;">
+      <div class="row">
+        <form action="http://127.0.0.1:5000/t_update_task.html" method="post">
+          <div class="col-lg-1">
+            <input type="text" name="id"   value="{{row[0]}}"  readonly style="border: 0px;"> 
+            <!-- <h3>{{row[0]}}</h3> -->
+          </div>
+          <div class="col-lg-7">
+            <h3>{{row[1]}}</h3>
+          </div>
+          <div class="col-lg-2">
+            <input type="submit" class="btn btn-primary" value="Update">
+          </div>
+          <div class="col-lg-2">
+            {% if row[2]=='1' %}
+            <h3 style="color: green;" > Completed </h3>
+            {% else %}
+            <h3 style="color: red;" > Upcoming </h3>
+            {% endif %}
+
+          </div>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+
+</body>
+</html>

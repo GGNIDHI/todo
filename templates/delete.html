@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <style>
+            .row-style
+            {
+            padding-top:70px;
+            position:relative;
+            }
+            #ggn{
+                width: 80%;
+                height: auto;
+                float: right;
+                margin-top: -25%;
+                margin-right: -20%;
+            }
+        </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+        <div class="col">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar" >
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="http://localhost:5000/" class="navbar-brand">TODO</a>
+                </div>
+                <div>
+                    <div class="collapse navbar-collapse" id="mynavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="create.html"><span class="glyphicon glyphicon-shopping-Menu"></span> Create</a></li>
+                            <li><a href="view.html"><span class="glyphicon glyphicon-Menu"></span> View List</a></li>
+                            <li><a href="display.html"><span class="glyphicon glyphicon-Menu"></span> Display List</a></li>
+                            <li><a href="delete.html"><span class="glyphicon glyphicon-Menu"></span> Delete List</a></li>
+                        </ul>
+                    </div>
+                </div>           
+              </div>
+         
+        </nav>
+        </div>
+    </div>
+
+    <div class="container" style="padding-top: 12%;">
+        <div class="row text-center">
+            <br>
+            <div class="col-md-3">	
+                <div class="thumbnail" style="border:2px solid black">	
+                <div class="caption">
+                   
+                    {% for row in output_data %}
+                    <h4><b style="text-transform: capitalize;">{{row[0]}}</b></h4>           
+                    {% endfor %}
+                    
+                </div>
+                </div>
+            </div>
+            <div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <form name="myform" method="post" action="http://127.0.0.1:5000/delete_p">
+                    
+                    <div class="col-md-2" >
+                        <input type="text" style="padding-bottom: 10px; padding-top:10px;padding-left: 11px;padding-right: 3px;"name="list"   placeholder="Enter the list to Delete:"  required> 
+                   
+                    <br/>
+                    <br/>
+                   
+                    
+                        <input  class="btn btn-primary" type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+            
+    </div>  
+    <img id="ggn" class="img-fluid" src="https://freewebillustrations.com/static/images/preview/ouch-clip-delete-confirmation.png">  
+</body>
+</html>

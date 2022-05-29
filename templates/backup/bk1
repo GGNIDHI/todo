@@ -1,0 +1,15 @@
+<div class="col-md-2" style="padding-top: 60px;">	
+            <div class="thumbnail" style="border: 3px solid black;">	
+                <div class="caption">
+                    {% for row in hash_data %}
+                        <div style="text-transform: uppercase;">
+                            <h4 ><bold>
+                                {{row[0]}}</bold>
+                            </h4>
+                            <hr style="border: 1px solid green;">
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+            </div>
+        </div>

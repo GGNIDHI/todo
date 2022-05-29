@@ -1,0 +1,110 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <style>
+            .row-style
+        {
+        padding-top:70px;
+         position:relative;
+        }
+        </style>
+
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+            <div class="col">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar" >
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:5000/" class="navbar-brand">TODO</a>
+                    </div>
+                    <div>
+                        <div class="collapse navbar-collapse" id="mynavbar">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="create.html"><span class="glyphicon glyphicon-shopping-Menu"></span> Create</a></li>
+                                <li><a href="view.html"><span class="glyphicon glyphicon-Menu"></span> View List</a></li>
+                                <li><a href="display.html"><span class="glyphicon glyphicon-Menu"></span> Display List</a></li>
+                                <li><a href="delete.html"><span class="glyphicon glyphicon-Menu"></span> Delete List</a></li>
+                            </ul>
+                        </div>
+                    </div>           
+                  </div>
+             
+            </nav>
+            </div>
+        </div>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Welcome to TODO Lists!! :)</h1>
+                <p> Lists u created check them out</p>
+            </div>
+        </div>
+        <div class="container">
+        <div class="row text-center">
+            
+            <form action="http://127.0.0.1:5000/view_p" method="post">
+                
+                <h4><b style="text-transform: uppercase;">{{listname}}</b></h4><hr/ style="width:1px solid black;">
+                <div class="col-md-3">	
+                    <div class="thumbnail" style="border: 3px solid black;">	
+                        <div class="caption">
+                            {% for row in output_data %}
+                            <span>
+                                <p ><input style="width: 70%;" name="item" type="submit" class="btn btn-primary" value={{row[0]}}></p>
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-2"></div>
+
+            <div class="col-md-5">	
+                <div class="thumbnail" style="border: 3px solid black;">	
+                    <div class="caption">
+                        
+
+                        {% for row in output_item %}
+                        <form action="http://127.0.0.1:5000/view_p_p" method="post">
+                            <div style="text-transform: uppercase;">
+                                <input type="hidden" style="border: 0px; font-size: xx-large;" name="listname" value="{{listname}}"readonly>
+
+                                    <h4 style="text-align: left;" >
+                                        <bold>
+                                            <input type="text" style="border: 0px;" name="item" value="{{row[0]}}"readonly>
+                                        </bold>
+                                    
+                                        <input type="submit" style="margin-left: 80%; margin-right: 10%;" class="btn btn-danger" value="Delete">
+                                </h4>
+                                
+                                <hr/ style="border: 1px solid green;">
+                            </div>
+                        </form>
+                        {% endfor %}
+                    
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+
+            
+        </div>
+        </div>
+    </body>
+
+</html>
